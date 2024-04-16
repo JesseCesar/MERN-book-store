@@ -1,11 +1,15 @@
 import express, { request, response } from "express";
-import { PORT, mongoDBURL } from "./config.js";
+import { PORT} from "./config.js";
+import dotenv from 'dotenv';
 import mongoose from "mongoose";
 import { Book } from "./models/bookModel.js";
 
+dotenv.config();
 const app = express();
 // middleware for parsing request body
 app.use(express.json());
+
+const mongoDBURL = process.env.MONGODB_URL;
 
 app.get("/", (request, response) => {
     console.log(request)
